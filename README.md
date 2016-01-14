@@ -1,3 +1,10 @@
+###Consul
+
+Is the consul implementation for herald.
+
+[![GoDoc](https://godoc.org/github.com/duckbunny/consul?status.svg)](https://godoc.org/github.com/duckbunny/consul)
+
+
 # consul
 --
     import "github.com/duckbunny/consul"
@@ -19,6 +26,7 @@ This service must be registered with herald.
 
 Or you can fall back on the herald service registry, to register all available
 services.
+
 
 ## Usage
 
