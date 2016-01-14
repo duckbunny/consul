@@ -1,6 +1,10 @@
+// Copyright © 2015 Jason Smith <jasonrichardsmith@gmail.com>.
+//
+// Use of this source code is governed by the LGPL-3
+// license that can be found in the LICENSE file.
+
 package consul
 
-// This package meets the requirements of the herald Pool and Declare interfaces for Consul.
 import (
 	"encoding/json"
 	"flag"
