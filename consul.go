@@ -1,23 +1,43 @@
 package consul
 
 // This package meets the requirements of the herald Pool and Declare interfaces for Consul.
-
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
+	"log"
+	"os"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/duckbunny/service"
 	"github.com/hashicorp/consul/api"
+	"github.com/hashicorp/consul/consul"
 )
 
-// TTL time to life for service in consul
-var TTL int = 15
+var (
+	// TTL time to life for service in consul
+	TTL int = 15
 
-// Where the ServiceKVPath resides
-var KVpath string = "services"
+	// Where the ServiceKVPath resides
+	KVpath string = "services"
+
+	// Config falls back to client default config
+	ConsulConfig api.Config = consul.DefaultConfig()
+)
+
+func init() {
+	ttl := os.Getenv("CONSUL_TTL")
+	if ttl != "" {
+		newttl, err := strconv.Atoi(ttl)
+		if err != nil {
+			log.Fatal(err)
+		}
+		TTL = newttl
+	}
+	flag.IntVar(&TTL, "consul-ttl", TTL, "TTL for consul microservice heartbeats.")
+}
 
 //  Consul structure
 type Consul struct {
@@ -70,8 +90,8 @@ func (c *Consul) Stop(s *service.Service) error {
 
 // Init Consul herald with Default Settings
 func (c *Consul) Init() error {
-	config := api.DefaultConfig()
-	client, err := api.NewClient(config)
+
+	client, err := api.NewClient(ConsulConfig)
 	if err != nil {
 		return err
 	}
