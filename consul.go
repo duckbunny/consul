@@ -18,7 +18,6 @@ import (
 	"github.com/duckbunny/herald"
 	"github.com/duckbunny/service"
 	"github.com/hashicorp/consul/api"
-	"github.com/hashicorp/consul/consul"
 )
 
 var (
@@ -171,7 +170,7 @@ func (c *Consul) Heartbeat(s *service.Service) {
 
 // Register this herald with consul
 func Register() {
-	c := consul.New()
+	c := New()
 	herald.AddPool(Title, c)
 	herald.AddDeclaration(Title, c)
 }
