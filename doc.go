@@ -21,3 +21,4 @@ This service must be registered with herald.
 Or you can fall back on the herald service registryi, to register all available services.
 
 */
+package consul
