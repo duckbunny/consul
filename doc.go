@@ -10,7 +10,7 @@ The consul package implements the Pool and Declare interfaces for the Herald pac
 The package takes one flag "consul-ttl" to set the time until the service expires from consul using a heartbeat.
 
 
-The package utilizies the Default client returned from consul api, but this can be overriden by edited
+The package utilizies the Default client returned from consul api, but this can be overriden by editing.
 
 	ConsulConfig.Config.Address = "192.168.1.56"
 
