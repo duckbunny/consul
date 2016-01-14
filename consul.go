@@ -11,6 +11,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/duckbunny/herald"
 	"github.com/duckbunny/service"
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/consul/consul"
@@ -23,8 +24,11 @@ var (
 	// Where the ServiceKVPath resides
 	KVpath string = "services"
 
+	// Title for specifying herald in flags
+	Title string = "consul"
+
 	// Config falls back to client default config
-	ConsulConfig api.Config = consul.DefaultConfig()
+	ConsulConfig api.Config = api.DefaultConfig()
 )
 
 func init() {
@@ -159,4 +163,11 @@ func (c *Consul) Heartbeat(s *service.Service) {
 		}
 		c.Agent.PassTTL(fmt.Sprintf("service:%v", FormattedID(s)), "TTL heartbeat")
 	}
+}
+
+// Register this herald with consul
+func Register() {
+	c := consul.New()
+	herald.AddPool(Title, c)
+	herald.AddDeclaration(Title, c)
 }
