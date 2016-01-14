@@ -5,7 +5,7 @@
 
 /*
 
-The consul package implements the Pool and Declare interfaces for the Herald package
+The consul package implements the Pool and Declare interfaces for the Herald package. https://github.com/duckbunny/herald
 
 The package takes one flag "consul-ttl" to set the time until the service expires from consul using a heartbeat.
 
@@ -18,7 +18,7 @@ This service must be registered with herald.
 
 	consul.Register()
 
-Or you can fall back on the herald service registryi, to register all available services.
+Or you can fall back on the herald service registry, to register all available services.
 
 */
 package consul
