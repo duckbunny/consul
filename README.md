@@ -42,7 +42,7 @@ var (
 	Title string = "consul"
 
 	// Config falls back to client default config
-	ConsulConfig api.Config = api.DefaultConfig()
+	ConsulConfig *api.Config = api.DefaultConfig()
 )
 ```
 
