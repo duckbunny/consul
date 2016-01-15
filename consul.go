@@ -161,6 +161,7 @@ func (c *Consul) Heartbeat(s *service.Service) {
 	for _ = range time.Tick(time.Duration(TTL-1) * time.Second) {
 		select {
 		case <-c.heartBeatKill:
+			c.Stop(s)
 			return
 		default:
 		}
