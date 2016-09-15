@@ -25,7 +25,7 @@ var (
 	TTL int = 15
 
 	// Where the ServiceKVPath resides
-	KVpath string = "services"
+	ServicesKVpath string = "services"
 
 	// Title for specifying herald in flags
 	Title string = "consul"
@@ -153,7 +153,7 @@ func FormattedID(s *service.Service) string {
 
 // FormattedKey returns correctly formatted key of the service
 func FormattedKey(s *service.Service) string {
-	return fmt.Sprintf("%v/%v/%v/%v/definition", KVpath, s.Domain, s.Title, s.Version)
+	return fmt.Sprintf("%v/%v/%v/%v/definition", ServiceKVPath, s.Domain, s.Title, s.Version)
 }
 
 // Heartbeat begins heart beat of health check.
