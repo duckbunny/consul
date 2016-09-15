@@ -130,7 +130,7 @@ func (c *Consul) Declare(s *service.Service) error {
 }
 
 // Retrieve the consul service definition.  Requires Domain, Title and Version be set.  Returns err if not found.
-func (c *Consul) Get(s *service.Service) error {
+func (c *Consul) GetService(s *service.Service) error {
 	key := FormattedKey(s)
 	qo := api.QueryOptions{}
 	v, _, err := c.KV.Get(key, &qo)
