@@ -25,7 +25,7 @@ var (
 	TTL int = 15
 
 	// Where the ServiceKVPath resides
-	KVpath string = "services"
+	ServicesKVpath string = "services"
 
 	// Title for specifying herald in flags
 	Title string = "consul"
@@ -130,7 +130,7 @@ func (c *Consul) Declare(s *service.Service) error {
 }
 
 // Retrieve the consul service definition.  Requires Domain, Title and Version be set.  Returns err if not found.
-func (c *Consul) Get(s *service.Service) error {
+func (c *Consul) GetService(s *service.Service) error {
 	key := FormattedKey(s)
 	qo := api.QueryOptions{}
 	v, _, err := c.KV.Get(key, &qo)
@@ -153,7 +153,7 @@ func FormattedID(s *service.Service) string {
 
 // FormattedKey returns correctly formatted key of the service
 func FormattedKey(s *service.Service) string {
-	return fmt.Sprintf("%v/%v/%v/%v/definition", KVpath, s.Domain, s.Title, s.Version)
+	return fmt.Sprintf("%v/%v/%v/%v/definition", ServiceKVPath, s.Domain, s.Title, s.Version)
 }
 
 // Heartbeat begins heart beat of health check.
